@@ -1,0 +1,71 @@
+package Application;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+import java.awt.Font;
+
+public class BillReportPage {
+
+	private JFrame frame;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					BillReportPage window = new BillReportPage();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public BillReportPage() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 450, 400);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("Final Bill Report");
+		lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD, 24));
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setBounds(10, 10, 416, 35);
+		frame.getContentPane().add(lblNewLabel);
+		
+		JLabel lblMovieName = new JLabel("Movie Name:- ");
+		lblMovieName.setHorizontalAlignment(SwingConstants.CENTER);
+		lblMovieName.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 16));
+		lblMovieName.setBounds(10, 55, 416, 28);
+		frame.getContentPane().add(lblMovieName);
+		
+		JLabel lblTotalNumberOf = new JLabel("Total Number Of Seats Booked:- ");
+		lblTotalNumberOf.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTotalNumberOf.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 16));
+		lblTotalNumberOf.setBounds(10, 93, 416, 28);
+		frame.getContentPane().add(lblTotalNumberOf);
+		
+		JLabel lblSeatsYouHave = new JLabel("Seats You Have Booked are given below:-");
+		lblSeatsYouHave.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSeatsYouHave.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 16));
+		lblSeatsYouHave.setBounds(10, 127, 416, 28);
+		frame.getContentPane().add(lblSeatsYouHave);
+	}
+
+}

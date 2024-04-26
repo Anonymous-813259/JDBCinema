@@ -1,0 +1,141 @@
+package Application;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+import java.awt.Font;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class BillReportPage {
+
+	private JFrame frame;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					String[] bookings = new String[] {"C 22","C 21","C 24"};
+					BillReportPage window = new BillReportPage("Leo","Asian Sridevi Mall",3,bookings,900);
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public BillReportPage(String movieName,String theaterName,int totalNumberOfBookings,String[] bookings,int totalAmount) {
+		initialize(movieName,theaterName,totalNumberOfBookings,bookings,totalAmount);
+	}
+	
+	/**
+	 * Sorting the booked tickets
+	 */
+	private String[] sort(String[] bookings) {
+		int[] arr = new int[bookings.length];
+		for(int i=0;i<bookings.length;i++) {
+			arr[i]=Integer.parseInt((bookings[i].split(" "))[1]);
+		}
+		int temp;
+		String temp1;
+		for(int i=0;i<arr.length;i++) {
+			for(int j=0;j<(arr.length)-1;j++) {
+				if(arr[j]>arr[j+1]) {
+					temp=arr[j];
+					arr[j]=arr[j+1];
+					arr[j+1]=temp;
+					temp1=bookings[j];
+					bookings[j]=bookings[j+1];
+					bookings[j+1]=temp1;
+				}
+			}
+		}
+		return bookings;
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize(String movieName,String theaterName,int totalNumberOfBookings,String[] bookings,int totalAmount) {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 450, 450);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("Final Bill Report");
+		lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD, 24));
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setBounds(10, 10, 416, 35);
+		frame.getContentPane().add(lblNewLabel);
+		
+		JLabel lblMovieName = new JLabel("Movie Name:- "+movieName);
+		lblMovieName.setHorizontalAlignment(SwingConstants.CENTER);
+		lblMovieName.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 16));
+		lblMovieName.setBounds(10, 55, 416, 28);
+		frame.getContentPane().add(lblMovieName);
+		
+		JLabel lblTheaterName = new JLabel("Theater Name:- "+theaterName);
+		lblTheaterName.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTheaterName.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 16));
+		lblTheaterName.setBounds(10, 93, 416, 28);
+		frame.getContentPane().add(lblTheaterName);
+		
+		JLabel lblSeatsYouHave = new JLabel("Seats You Have Booked are given below:- ");
+		lblSeatsYouHave.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSeatsYouHave.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 16));
+		lblSeatsYouHave.setBounds(10, 169, 416, 28);
+		frame.getContentPane().add(lblSeatsYouHave);
+		
+		bookings = sort(bookings);
+		
+		int y=200;
+		for(int i=0;i<bookings.length;i++) {
+			JLabel lblSeatingNumbers = new JLabel(bookings[i]);
+			lblSeatingNumbers.setVerticalAlignment(SwingConstants.TOP);
+			lblSeatingNumbers.setHorizontalAlignment(SwingConstants.CENTER);
+			lblSeatingNumbers.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 16));
+			lblSeatingNumbers.setBounds(10, y, 416, 25);
+			frame.getContentPane().add(lblSeatingNumbers);
+			y=y+25;
+		}
+		
+		JButton btnNewButton = new JButton("OK");
+		btnNewButton.setFont(new Font("Times New Roman", Font.PLAIN, 16));
+		btnNewButton.setBounds(286, 368, 101, 35);
+		frame.getContentPane().add(btnNewButton);
+		
+		JButton btnBack = new JButton("Back");
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				SeatsBookingPage sbp = new SeatsBookingPage(movieName,theaterName);
+				frame.dispose();
+			}
+		});
+		btnBack.setFont(new Font("Times New Roman", Font.PLAIN, 16));
+		btnBack.setBounds(50, 368, 101, 35);
+		frame.getContentPane().add(btnBack);
+		
+		JLabel lblTotalSeats = new JLabel("Total Number Of Seats Booked:- "+totalNumberOfBookings);
+		lblTotalSeats.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTotalSeats.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 16));
+		lblTotalSeats.setBounds(10, 131, 416, 28);
+		frame.getContentPane().add(lblTotalSeats);
+		
+		JLabel lblAmount = new JLabel("Total Amount To Be Paid:- "+totalAmount);
+		lblAmount.setHorizontalAlignment(SwingConstants.CENTER);
+		lblAmount.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 16));
+		lblAmount.setBounds(10, 330, 416, 28);
+		frame.getContentPane().add(lblAmount);
+	}
+
+}

@@ -1,0 +1,102 @@
+package Application;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+import java.awt.Font;
+import javax.swing.JButton;
+
+public class BillReportPage {
+
+	private JFrame frame;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					String[] bookings = new String[] {"C 21","C 23","C 24"};
+					BillReportPage window = new BillReportPage("Leo","Asian Sridevi Mall","3",bookings,900);
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public BillReportPage(String movieName,String theaterName,String totalNumberOfBookings,String[] bookings,int totalAmount) {
+		initialize(movieName,theaterName,totalNumberOfBookings,bookings,totalAmount);
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize(String movieName,String theaterName,String totalNumberOfBookings,String[] bookings,int totalAmount) {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 450, 450);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("Final Bill Report");
+		lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD, 24));
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setBounds(10, 10, 416, 35);
+		frame.getContentPane().add(lblNewLabel);
+		
+		JLabel lblMovieName = new JLabel("Movie Name:- ");
+		lblMovieName.setHorizontalAlignment(SwingConstants.CENTER);
+		lblMovieName.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 16));
+		lblMovieName.setBounds(10, 55, 416, 28);
+		frame.getContentPane().add(lblMovieName);
+		
+		JLabel lblTheaterName = new JLabel("Theater Name:-");
+		lblTheaterName.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTheaterName.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 16));
+		lblTheaterName.setBounds(10, 93, 416, 28);
+		frame.getContentPane().add(lblTheaterName);
+		
+		JLabel lblSeatsYouHave = new JLabel("Seats You Have Booked are given below:-");
+		lblSeatsYouHave.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSeatsYouHave.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 16));
+		lblSeatsYouHave.setBounds(10, 169, 416, 28);
+		frame.getContentPane().add(lblSeatsYouHave);
+		
+		JLabel lblSeatingNumbers = new JLabel("Seats You Have Booked are given below:-");
+		lblSeatingNumbers.setVerticalAlignment(SwingConstants.TOP);
+		lblSeatingNumbers.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSeatingNumbers.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 16));
+		lblSeatingNumbers.setBounds(10, 207, 416, 90);
+		frame.getContentPane().add(lblSeatingNumbers);
+		
+		JButton btnNewButton = new JButton("OK");
+		btnNewButton.setFont(new Font("Times New Roman", Font.PLAIN, 16));
+		btnNewButton.setBounds(286, 368, 101, 35);
+		frame.getContentPane().add(btnNewButton);
+		
+		JButton btnBack = new JButton("Back");
+		btnBack.setFont(new Font("Times New Roman", Font.PLAIN, 16));
+		btnBack.setBounds(50, 368, 101, 35);
+		frame.getContentPane().add(btnBack);
+		
+		JLabel lblTotalSeats_1 = new JLabel("Total Number Of Seats Booked:- ");
+		lblTotalSeats_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTotalSeats_1.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 16));
+		lblTotalSeats_1.setBounds(10, 131, 416, 28);
+		frame.getContentPane().add(lblTotalSeats_1);
+		
+		JLabel lblAmount = new JLabel("Total Amount To Be Paid:- ");
+		lblAmount.setHorizontalAlignment(SwingConstants.CENTER);
+		lblAmount.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 16));
+		lblAmount.setBounds(10, 330, 416, 28);
+		frame.getContentPane().add(lblAmount);
+	}
+
+}

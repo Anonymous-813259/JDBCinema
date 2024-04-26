@@ -1,0 +1,75 @@
+package Application;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.SwingConstants;
+
+public class PaymentPage {
+
+	private JFrame frame;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					PaymentPage window = new PaymentPage();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public PaymentPage() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 550, 400);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("Pay");
+		lblNewLabel.setVerticalAlignment(SwingConstants.TOP);
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD, 24));
+		lblNewLabel.setBounds(10, 10, 516, 29);
+		frame.getContentPane().add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("&");
+		lblNewLabel_1.setVerticalAlignment(SwingConstants.TOP);
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1.setFont(new Font("Times New Roman", Font.BOLD, 24));
+		lblNewLabel_1.setBounds(10, 40, 516, 29);
+		frame.getContentPane().add(lblNewLabel_1);
+		
+		JLabel lblEnjoyYourDay = new JLabel("Enjoy Your Day");
+		lblEnjoyYourDay.setVerticalAlignment(SwingConstants.TOP);
+		lblEnjoyYourDay.setHorizontalAlignment(SwingConstants.CENTER);
+		lblEnjoyYourDay.setFont(new Font("Times New Roman", Font.BOLD, 24));
+		lblEnjoyYourDay.setBounds(10, 70, 516, 29);
+		frame.getContentPane().add(lblEnjoyYourDay);
+		
+		JLabel lblNewLabel_2 = new JLabel("29-10-2023");
+		lblNewLabel_2.setVerticalAlignment(SwingConstants.TOP);
+		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_2.setFont(new Font("Times New Roman", Font.BOLD, 24));
+		lblNewLabel_2.setBounds(10, 100, 516, 29);
+		frame.getContentPane().add(lblNewLabel_2);
+	}
+
+}

@@ -1,0 +1,156 @@
+package Application;
+
+import java.awt.EventQueue;
+import java.text.*;
+import java.time.*;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import javax.swing.SwingConstants;
+import javax.swing.JComboBox;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JScrollPane;
+
+public class TimingsPage {
+
+	private JFrame frame;
+	long daysDifference=0;
+	String d1,line;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					TimingsPage window = new TimingsPage("Jawan","PVR cinema");
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public TimingsPage(String movieName,String theaterName) {
+		initialize(movieName,theaterName);
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize(String movieName,String theaterName) {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 450, 300);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("Mark your Date and Time");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD, 24));
+		lblNewLabel.setBounds(10, 10, 416, 36);
+		frame.getContentPane().add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("Date:-");
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblNewLabel_1.setFont(new Font("Times New Roman", Font.PLAIN, 16));
+		lblNewLabel_1.setBounds(51, 83, 77, 22);
+		frame.getContentPane().add(lblNewLabel_1);
+		
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/customermovieticketsbooking", "root", "");
+			Statement stmt = con.createStatement();
+			String qry = "select * from theaters";
+			ResultSet rs = stmt.executeQuery(qry);
+			while(rs.next()) {
+				if(movieName.equalsIgnoreCase(rs.getString(2)) && theaterName.equalsIgnoreCase(rs.getString(1))) {
+					d1 = rs.getString(4);
+					line = rs.getString(3);
+					break;
+				}
+			}
+			//Converting String to date
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+			Date date = null;
+	        try {
+	            date = dateFormat.parse(d1);
+	        } catch (ParseException e) {
+	            e.printStackTrace();
+	        }
+			//Finding Difference between the today and last date
+			Date today1 = new Date();
+			long difference = date.getTime() - today1.getTime(); 
+            daysDifference = difference / (24 * 60 * 60 * 1000);
+		}
+		catch(Exception ex) {
+			ex.printStackTrace();
+		}
+		
+		JComboBox<LocalDate> comboBox = new JComboBox<LocalDate>();
+		comboBox.setBounds(153, 85, 149, 21);
+		frame.getContentPane().add(comboBox);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(424, 0, 12, 263);
+		scrollPane.setSize(600,400);
+		scrollPane.setLayout(new GridLayout(13, 6, 10, 0));
+		JScrollPane scrollpane;
+		scrollpane = new JScrollPane(scrollPane);
+		frame.getContentPane().add(scrollpane, BorderLayout.CENTER);
+		
+		/*JButton timingBtn = new JButton("");
+		timingBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		timingBtn.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		timingBtn.setBounds(10, 132, 416, 21);
+		frame.getContentPane().add(timingBtn);*/
+		
+		int y=130;
+		String[] arr = line.split(", ");
+		for(int i=0;i<arr.length;i++) {
+			String timing = arr[i];
+			JButton timingBtn = new JButton(timing);
+			/*timingBtn.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+				}
+			});*/
+			timingBtn.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+			timingBtn.setBounds(10, y, 416, 28);
+			frame.getContentPane().add(timingBtn);
+			y=y+30;
+		}
+		
+		//comboBox.addItem(today);
+		//Adding dates to comboBox
+		LocalDate today = LocalDate.now();
+		comboBox.addItem(today);
+        for(int i=1;i<=daysDifference+1;i++) {
+        	LocalDate nextDays = today.plusDays(i);
+        	comboBox.addItem(nextDays);
+        }
+		/*comboBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});*/
+		
+	}
+}

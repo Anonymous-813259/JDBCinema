@@ -1,0 +1,65 @@
+package Application;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.SwingConstants;
+import javax.swing.JButton;
+
+public class TheatersListPage {
+
+	private JFrame frame;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					TheatersListPage window = new TheatersListPage();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public TheatersListPage() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 450, 300);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("Theaters List");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD, 24));
+		lblNewLabel.setBounds(10, 10, 416, 36);
+		frame.getContentPane().add(lblNewLabel);
+		
+		JLabel lblTheaterName = new JLabel("Theater Name:- ");
+		lblTheaterName.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTheaterName.setFont(new Font("Times New Roman", Font.BOLD, 16));
+		lblTheaterName.setBounds(10, 49, 416, 19);
+		frame.getContentPane().add(lblTheaterName);
+		
+		JButton theaterName = new JButton("");
+		theaterName.setFont(new Font("Times New Roman", Font.BOLD, 16));
+		theaterName.setBounds(10, 78, 416, 28);
+		frame.getContentPane().add(theaterName);
+	}
+
+}

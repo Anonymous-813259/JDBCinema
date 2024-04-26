@@ -1,0 +1,97 @@
+package Application;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.SwingConstants;
+import javax.swing.JRadioButton;
+import javax.swing.JButton;
+
+public class ChoosePayment {
+
+	String paymentMethod;
+	private JFrame frame;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					ChoosePayment window = new ChoosePayment();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public ChoosePayment() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 550, 400);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("Pay");
+		lblNewLabel.setVerticalAlignment(SwingConstants.TOP);
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD, 24));
+		lblNewLabel.setBounds(10, 10, 516, 29);
+		frame.getContentPane().add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("&");
+		lblNewLabel_1.setVerticalAlignment(SwingConstants.TOP);
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1.setFont(new Font("Times New Roman", Font.BOLD, 24));
+		lblNewLabel_1.setBounds(10, 40, 516, 29);
+		frame.getContentPane().add(lblNewLabel_1);
+		
+		JLabel lblEnjoyYourDay = new JLabel("Enjoy Your Day");
+		lblEnjoyYourDay.setVerticalAlignment(SwingConstants.TOP);
+		lblEnjoyYourDay.setHorizontalAlignment(SwingConstants.CENTER);
+		lblEnjoyYourDay.setFont(new Font("Times New Roman", Font.BOLD, 24));
+		lblEnjoyYourDay.setBounds(10, 70, 516, 29);
+		frame.getContentPane().add(lblEnjoyYourDay);
+		
+		JLabel lblDate = new JLabel("29-10-2023");
+		lblDate.setVerticalAlignment(SwingConstants.TOP);
+		lblDate.setHorizontalAlignment(SwingConstants.CENTER);
+		lblDate.setFont(new Font("Times New Roman", Font.BOLD, 24));
+		lblDate.setBounds(10, 100, 516, 29);
+		frame.getContentPane().add(lblDate);
+		
+		JRadioButton rdbtnNewRadioButton = new JRadioButton("UPI Payment");
+		rdbtnNewRadioButton.setFont(new Font("Times New Roman", Font.PLAIN, 16));
+		rdbtnNewRadioButton.setBounds(49, 197, 121, 34);
+		frame.getContentPane().add(rdbtnNewRadioButton);
+		
+		JRadioButton rdbtnBankTransaction = new JRadioButton("Bank Transaction");
+		rdbtnBankTransaction.setFont(new Font("Times New Roman", Font.PLAIN, 16));
+		rdbtnBankTransaction.setBounds(186, 197, 143, 34);
+		frame.getContentPane().add(rdbtnBankTransaction);
+		
+		JRadioButton rdbtnOnlineTransaction = new JRadioButton("Debit or Credit Card");
+		rdbtnOnlineTransaction.setFont(new Font("Times New Roman", Font.PLAIN, 16));
+		rdbtnOnlineTransaction.setBounds(365, 197, 161, 34);
+		frame.getContentPane().add(rdbtnOnlineTransaction);
+		
+		JButton btnNewButton = new JButton("Proceed");
+		btnNewButton.setFont(new Font("Times New Roman", Font.PLAIN, 16));
+		btnNewButton.setBounds(186, 270, 161, 34);
+		frame.getContentPane().add(btnNewButton);
+	}
+}
