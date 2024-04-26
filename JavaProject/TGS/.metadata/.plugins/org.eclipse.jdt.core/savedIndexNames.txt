@@ -1,4 +1,0 @@
-INDEX VERSION 1.134+D:\SRU\3rd_Yr_1st_Sem\Projects\JavaProject\TGS\.metadata\.plugins\org.eclipse.jdt.core
-1865797976.index
-2255499494.index
-739635668.index

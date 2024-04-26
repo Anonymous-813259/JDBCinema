@@ -1,9 +1,0 @@
-INDEX VERSION 1.134+D:\SRU\3rd_Yr_1st_Sem\Projects\JavaProject\HospitalManagementSystem\.metadata\.plugins\org.eclipse.jdt.core
-3389222434.index
-1112586716.index
-3043977509.index
-3975405208.index
-1865797976.index
-4153639630.index
-1075802549.index
-862766090.index
